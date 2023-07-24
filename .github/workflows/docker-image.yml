@@ -1,0 +1,10 @@
+name: Host Service CI
+
+on:   #언제 움직일래? 이벤트
+  push:
+    branches: [ "main" ]  #main branch 에 push 하면 동작함
+    paths: ["*.js"]  #자바 스크립트 파일이 바뀔 때만 움직임
+    
+jobs:          #수행될 작업
+  buildImage:  #작업 이름
+    runs-on: ubuntu-latest  #runs-on : 컨테이너를 띄울 때 깔릴 운영체
