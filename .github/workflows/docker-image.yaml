@@ -27,6 +27,7 @@ jobs:          #수행될 작업
         
   updateYaml:
     runs-on: ubuntu-latest
+    needs: buildImage #빌드이미지가 끝나야 업뎃이 돌아가야함!
     steps:
     - name: 1. Checkout
       uses: actions/checkout@v3 #우분투 새로 만들었는데 이건 update 하는거니까 기존걸 사용함
