@@ -37,8 +37,8 @@ jobs:          #수행될 작업
         #이제 소스가 우분투 컨테이너 밑에 받아짐. 안의 태그를 변경해야함
     - name: 2. Change Docker tag
       run:  |  #지금부터의 문장은 하나의 텍스트 파일로 들어감. 우분투를 띄워서. #우리가 빌드한 놈으로 태그가 들어감. 근데 이건 내 레포가 아님^^ git config로 따로 설정해줘야함
-        cat test.yaml | sed "s/image: phl0904\/node-app:.*/images: phl0904\/node-app:${{github.sha }}/g"   
-        git config --global user.email "endqo123@gmail.com"
+        sed -i "s/image: phl0904\/node-app:.*/images: phl0904\/node-app:${{github.sha }}/g" hostservice-deploy.yaml
+        git config --global user.email "endqo123@gmail.com" 
         git config --global user.name "seeun00"
         git commit -am "triggered by github action"
         git push origin main
