@@ -32,7 +32,7 @@ jobs:          #수행될 작업
     - name: 1. Checkout
       uses: actions/checkout@v3 #우분투 새로 만들었는데 이건 update 하는거니까 기존걸 사용함
       with:     #접속할 때 추가정보
-        repository: 'phl0904/cloudwave-hostsvc-cd'
+        repository: 'seeun00/cloudwave-hostsvc-cd'
         token: ${{secrets.GIT_TOKEN }}  #로그인할 때 토큰 넣어. 
         #이제 소스가 우분투 컨테이너 밑에 받아짐. 안의 태그를 변경해야함
     - name: 2. Change Docker tag
