@@ -16,6 +16,7 @@ jobs:          #수행될 작업
       uses: docker/login-action@v2  
       with:       # 로그인할 때 필요한 정보
         username: ${{secrets.DOCKER_USERNAME }} # 아이디비번을 공개하지 않도록. 절대 소스코드 안에 들어가면 안됨. 깃헙 셋팅에서 아디비번 값 정함       password: ${{secrets.DOCKER_PASSWORD }}
+        password: ${{secrets.DOCKER_PASSWORD}}
     
     - name: 3. Build and push  #이제 로그인 했으니까 빌드하자!
       id: docker_build
