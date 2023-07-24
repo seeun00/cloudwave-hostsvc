@@ -8,3 +8,19 @@ on:   #언제 움직일래? 이벤트
 jobs:          #수행될 작업
   buildImage:  #작업 이름
     runs-on: ubuntu-latest  #runs-on : 컨테이너를 띄울 때 깔릴 운영체
+    steps:
+    - name: 1. Checkuot
+      uses: actions/checkout@v3   #체크아웃 : 소스코드를 내려받는것. 파이프라인이 동작하는 레포 : phl0904/hostservice임. 그걸 우분투로 내려받음
+
+    - name: 2. Login to DockerHub   #이미지 올리려면 도커허브에 접속해야됨
+      uses: docker/login-action@v2  
+      with:       # 로그인할 때 필요한 정보
+        username: ${{secrets.DOCKER_USERNAME }} # 아이디비번을 공개하지 않도록. 절대 소스코드 안에 들어가면 안됨. 깃헙 셋팅에서 아디비번 값 정함       password: ${{secrets.DOCKER_PASSWORD }}
+    
+    - name: 3. Build and push  #이제 로그인 했으니까 빌드하자!
+      id: docker_build
+      uses: docker/build-push-action@v2 
+      with:  
+        push: true  #도커 빌드 끝나고 난 다음에 이미지 레지스트리에 push할래? 응
+        tags: phl0904/hostservice:${{github.sha }}   #뒤에 latest 쓰지마. 
+        
